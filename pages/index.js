@@ -45,21 +45,8 @@ export async function getStaticProps() {
 
 export default function Home({ allPostsData }) {
     return (
-        <Layout home>
-            <Head>
-                <title>{siteTitle}</title>
-            </Head>
-            <section className={utilStyles.headingMd}>
-                <p align="center">
-                    A software developer who is trying Next.js for the first
-                    time.
-                </p>
-            </section>
-            <section
-                className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}
-            >
-                <SearchComponent data={allPostsData} />
-            </section>
-        </Layout>
+        <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
+            <SearchComponent data={allPostsData} />
+        </section>
     );
 }

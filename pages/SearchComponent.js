@@ -6,18 +6,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 export default function SearchComponent({ data }) {
-    const [posts, setPosts] = useState(data);
-    const [result, setResult] = useState(data);
-    const [search, setSearch] = useState('');
-
-    useEffect(() => {
-        console.log('search => ', search);
-        setResult(() => {
-            return posts.filter((post) =>
-                post.title.toLowerCase().includes(search.toLowerCase()),
-            );
-        });
-    }, [search]);
+    // Ensure data is an array and default to an empty array if it's not
+    const dataArray = Array.isArray(data) ? data : [];
     const formatDate = (dateString) => {
         const date = new Date(dateString);
         // const options = { day: 'numeric', month: 'short', year: 'numeric' };
@@ -43,34 +33,18 @@ export default function SearchComponent({ data }) {
     }
     return (
         <>
-            <h1>Search</h1>
-            <input
-                type="text"
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-            />
             <h2 className={utilStyles.headingLg}>Blog</h2>
             <ul className={utilStyles.list}>
-                {/* {result &&
-                    result.map(({ id, date, title }) => (
-                        <li className={utilStyles.listItem} key={id}>
-                            <Link href={`/posts/${id}`}>{title}</Link>
-                            <br />
-                            <small className={utilStyles.lightText}>
-                                <Date dateString={date} />
-                            </small>
-                        </li>
-                    ))} */}
-                {result.map((blog, index) => (
-                    <div key={blog._id}>
+                {dataArray?.map((blog, index) => (
+                    <div key={blog?._id}>
                         <Link href={`/posts/${blog?._id}`}>
                             <div className="Allcards" key={index}>
                                 <h3 className="mt-2 mb-2 lg:mt-4 text-3xl lg:text-3xl font-bold ">
-                                    {blog.title}
+                                    {blog?.title}
                                 </h3>
                                 <p className="mb-2">
                                     Published on&nbsp;
-                                    {formatDate(blog.uploadDate)}
+                                    {formatDate(blog?.uploadDate)}
                                     &nbsp;by
                                     <span className="text-danger ml-2 font-bold">
                                         Jaya Joshi
@@ -88,7 +62,7 @@ export default function SearchComponent({ data }) {
                                     /> */}
 
                                     <p className="text-xl">
-                                        {shorten(blog.description, 195)}
+                                        {shorten(blog?.description, 195)}
 
                                         <br />
                                         <span className="text-danger font-bold">
