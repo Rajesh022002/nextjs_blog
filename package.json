@@ -1,17 +1,23 @@
 {
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start"
-  },
-  "dependencies": {
-    "date-fns": "^2.29.3",
-    "gray-matter": "^4.0.3",
-    "next": "latest",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "remark": "^14.0.2",
-    "remark-html": "^15.0.2"
-  }
+    "private": true,
+    "homepage": "https://Rajesh022002.github.io/nextjs_blog",
+    "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start",
+        "predeploy": "npm run build",
+        "deploy": "gh-pages -d out"
+    },
+    "dependencies": {
+        "date-fns": "^2.29.3",
+        "gray-matter": "^4.0.3",
+        "next": "latest",
+        "react": "18.2.0",
+        "react-dom": "18.2.0",
+        "remark": "^14.0.2",
+        "remark-html": "^15.0.2"
+    },
+    "devDependencies": {
+        "gh-pages": "^6.0.0"
+    }
 }
